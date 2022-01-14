@@ -1,0 +1,59 @@
+
+  <form 
+  (ngSubmit)="save()"
+  [formGroup]="formValues"
+  class="form-group d-flex w-100 range flex-column align-items-center justify-content-center">
+  <div class="mb-3 card p-4 w-50">
+        <label 
+          for="exampleFormControlInput1" 
+          class="form-label">
+           Desde
+        </label>
+        <input 
+          type="number" 
+          class="form-control " 
+          id="exampleFormControlInput1" 
+          name="start"
+          formControlName="start"
+          autocomplete="off"
+          placeholder='123...'>
+      <span 
+        class="form-text text-danger" 
+        *ngIf="isValid('start')">  
+            Este campo debe tener al menos un numero
+     </span>
+        <label 
+          for="exampleFormControlInput2" 
+          class="form-label">
+            Hasta
+        </label>
+        <input 
+          type="number" 
+          formControlName="end"
+          autocomplete="off"
+          name="end"
+          class="form-control " 
+          id="exampleFormControlInput2" 
+          placeholder="123...">
+          <span 
+        class="form-text text-danger" 
+       *ngIf="isValid('end')">  
+           Este campo debe tener al menos un numero y ser mayor a desde
+     </span>
+      <button
+       [disabled]="formValues.invalid" 
+       class="mt-4 btn btn-primary "
+       type="submit"> 
+          Guardar
+      </button>
+    </div>
+    <span *ngIf="error" class="my-2 text-warning">{{error}}</span>
+  </form>
+  <div class="p-5 w-100 d-flex flex-wrap justify-content-center">
+      <span 
+        class="bg-dark text-primary border border-primary p-3 m-2 fs-3 shadow rounded-3" 
+        *ngFor="let valor of valuesSelected">
+           {{valor}}
+      </span>
+  </div>
+
