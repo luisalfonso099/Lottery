@@ -28,8 +28,6 @@ export class RangosComponent implements OnInit {
 
    constructor(private fb: FormBuilder, private store: Store){  }
    ngOnInit():void {
-      console.log(this.valuesSelected);
-      
         this.store.select(rangosSelector)
         .pipe(filter( 
                     value =>  value.length && !this.valuesSelected.includes(this.formValues.value.start)
@@ -67,9 +65,6 @@ export class RangosComponent implements OnInit {
          this.store.dispatch(calcularRango({value : result}))
          this.formValues.reset()
          this.error = ""
-      console.log(this.valuesSelected);
-
-
    }
    isValid = (campo:string) =>{
      return this.formValues.controls[campo].errors 
